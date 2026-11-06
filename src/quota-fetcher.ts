@@ -154,10 +154,12 @@ export async function fetchQuota(port: number, csrfToken: string): Promise<Quota
 // ─── Internals ──────────────────────────────────────────────────────
 
 async function postWithFallback<T>(port: number, csrfToken: string, path: string, body: object): Promise<T> {
+    // Try HTTP first (new Antigravity IDE v2+ agy hub uses plain HTTP),
+    // then fall back to HTTPS (older language_server used HTTPS).
     try {
-        return await post<T>(port, csrfToken, path, body, 'https');
-    } catch {
         return await post<T>(port, csrfToken, path, body, 'http');
+    } catch {
+        return await post<T>(port, csrfToken, path, body, 'https');
     }
 }
 

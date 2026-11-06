@@ -2,6 +2,18 @@
 
 All notable changes to Antigravity Pulse will be documented in this file to keep the project transparent and open-source.
 
+## [1.8.0] - 2026-11-06
+
+### Added
+- **Antigravity IDE v2+ Compatibility** — full support for the new Antigravity IDE architecture powered by the `agy` hub backend
+- **New-Style Log Discovery** — detects server port and CSRF token from `window*/exthost/output_logging_*/*-Antigravity.log` files with status readiness verification
+- **HTTP-First Communication** — auto-detects plain HTTP protocol used by `agy` hub while seamlessly falling back to HTTPS for legacy language server versions
+- **Multi-Binary Process Scanner** — scans for both `agy` (`agy.exe`) and legacy `language_server_*` binaries with dual `--hub-port` and `--extension_server_port` argument parsing
+
+### Changed
+- Backward compatible with Antigravity IDE v1 (`ls-main.log` and HTTPS server)
+- Updated connection tests and port probing sequence to prioritize modern Antigravity hub defaults
+
 ## [1.7.0] - 2026-10-31
 
 ### Added
